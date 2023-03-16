@@ -12,7 +12,7 @@ import androidx.lifecycle.Observer
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.school_data.HighSchoolViewModel
 
-/** Activity to display each high schools in NYC area's average SAT scores. */
+/** Activity to display each high school in the NYC area's average SAT scores. */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
