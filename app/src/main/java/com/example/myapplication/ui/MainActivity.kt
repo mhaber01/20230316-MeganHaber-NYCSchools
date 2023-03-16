@@ -1,19 +1,18 @@
 package com.example.myapplication.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.myapplication.school_data.HighSchoolViewModel
 import com.example.myapplication.databinding.ActivityMainBinding
+import com.example.myapplication.school_data.HighSchoolViewModel
 
-/** Activity for NYC high schools' average SAT scores. */
+/** Activity to display each high schools in NYC area's average SAT scores. */
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -47,6 +46,7 @@ class MainActivity : AppCompatActivity() {
     private fun setSpinnerAdapter() {
         val dataAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, schoolNameArrayList)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        dataAdapter.notifyDataSetChanged();
         spinner.adapter = dataAdapter
     }
 
