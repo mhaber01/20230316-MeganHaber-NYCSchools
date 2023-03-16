@@ -1,10 +1,12 @@
 package com.example.myapplication.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -25,8 +27,25 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initializeUi()
-        setSpinner(binding.spinner)
+        val dataAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, schoolNameArrayList)
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinner.adapter = dataAdapter
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
+                Toast.makeText(applicationContext, pos.toString(), Toast.LENGTH_SHORT).show()
+                viewModel.scores.observe(this@MainActivity, Observer { scores ->
+                    for (score in scores) {
+                        if (score.id == schoolIdArrayList[pos]) {
+                            binding.mathSatScore.text = score.math
+                            binding.readingSatScore.text = score.reading
+                            binding.writingSatScore.text = score.writing
+                        }
+                    }
+                })
+            }
 
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+        }
     }
 
     private fun initializeUi() {
@@ -39,14 +58,22 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setSpinner(spinner: Spinner) {
-        var dataAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, schoolNameArrayList)
+        val dataAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, schoolNameArrayList)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-
         spinner.adapter = dataAdapter
-
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                viewModel.getScoresFromSchool(schoolIdArrayList[pos])
+                Toast.makeText(applicationContext, pos.toString(), Toast.LENGTH_SHORT).show()
+                Log.d("SELECTED", "SELECTED")
+                viewModel.scores.observe(this@MainActivity, Observer { scores ->
+                    for (score in scores) {
+                        if (score.id == schoolIdArrayList[pos]) {
+                            binding.mathSatScore.text = score.math
+                            binding.readingSatScore.text = score.reading
+                            binding.writingSatScore.text = score.writing
+                        }
+                    }
+                })
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

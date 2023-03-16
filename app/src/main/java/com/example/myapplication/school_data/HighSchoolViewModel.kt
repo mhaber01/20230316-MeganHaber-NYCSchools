@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
-class HighSchoolViewModel(private val savedState: SavedStateHandle = SavedStateHandle()) : ViewModel() {
+class HighSchoolViewModel() : ViewModel() {
 
     private val tag = "HighSchoolViewModel"
 
@@ -45,8 +45,5 @@ class HighSchoolViewModel(private val savedState: SavedStateHandle = SavedStateH
                 Log.d(tag, "Failure: ${e.message}")
             }
         }
-    }
-
-    fun getScoresFromSchool(id: String) {
     }
 }
