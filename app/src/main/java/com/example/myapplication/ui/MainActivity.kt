@@ -8,9 +8,8 @@ import android.widget.Spinner
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.example.myapplication.databinding.ActivityMainBinding
-import com.example.myapplication.school_data.AverageSatScores
 import com.example.myapplication.school_data.HighSchoolViewModel
+import com.example.myapplication.databinding.ActivityMainBinding
 
 /** Activity for NYC high schools' average SAT scores. */
 class MainActivity : AppCompatActivity() {
@@ -47,7 +46,7 @@ class MainActivity : AppCompatActivity() {
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                viewModel.getScoresFromSchool(schoolIdArrayList.get(pos))
+                viewModel.getScoresFromSchool(schoolIdArrayList[pos])
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}

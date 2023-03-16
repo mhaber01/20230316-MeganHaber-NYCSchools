@@ -19,11 +19,6 @@ class HighSchoolViewModel(private val savedState: SavedStateHandle = SavedStateH
     val scores: LiveData<List<AverageSatScores>> = _scores
 
     init {
-        getSchoolList()
-    }
-
-    /** Get the list of schools and, if the state contains the school ID and name, then show the SAT scores. */
-    private fun getSchoolList() {
         getSchools()
         getScores()
     }
