@@ -14,8 +14,4 @@
     <string name="sat_reading">Reading</string>
     <string name="sat_writing">Writing</string>
     <string name="sat_math">Math</string>
-
-    <string-array name="schools_array">
-
-    </string-array>
 </resources>

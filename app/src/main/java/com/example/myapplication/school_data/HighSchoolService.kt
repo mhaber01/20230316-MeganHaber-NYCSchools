@@ -1,39 +1,37 @@
 package com.example.myapplication.school_data
 
-import com.squareup.moshi.Moshi
-import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import retrofit2.Converter
 import retrofit2.Retrofit
-import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import retrofit2.http.GET
 
 private const val BASE_URL = "https://data.cityofnewyork.us/resource/"
 
-/**
- * Build the Moshi object with Kotlin adapter factory that Retrofit will be using.
- */
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
+/** Provide a singleton [Converter.Factory]. */
+private val GsonFactory: Converter.Factory by lazy {
+    GsonConverterFactory.create()
+}
 
-/**
- * The Retrofit object with the Moshi converter.
- */
-private val retrofit = Retrofit.Builder()
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .baseUrl(BASE_URL)
-    .build()
+/** Create a [Retrofit] factory instance for [HighSchoolService]. */
+private val RetrofitFactory: (String, Converter.Factory) -> Retrofit = { baseUrl, factory ->
+    Retrofit.Builder()
+        .baseUrl(baseUrl)
+        .addConverterFactory(factory)
+        .build()
+}
 
-/**
- * A public Api object that exposes the lazy-initialized Retrofit service
- */
 object HighSchoolApi {
-    val retrofitService: HighSchoolService by lazy { retrofit.create(HighSchoolService::class.java) }
+    /** Provide a singleton [HighSchoolService]. */
+    val retrofitService : HighSchoolService by lazy {
+        RetrofitFactory(BASE_URL, GsonFactory).create()
+    }
 }
 
 interface HighSchoolService {
     @GET("s3k6-pzi2.json")
-    fun getHighSchools(): List<HighSchool>
+    suspend fun getHighSchools(): List<HighSchool>
 
     @GET("f9bf-2cp4.json")
-    fun getSatScores(): List<AverageScores>
+    suspend fun getSatScores(): List<AverageSatScores>
 }
