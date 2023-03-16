@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.*
 import kotlinx.coroutines.launch
 
+/** The [ViewModel] that sends the state of [HighSchool] and [AverageSatScores] to the UI. */
 class HighSchoolViewModel() : ViewModel() {
 
     private val tag = "HighSchoolViewModel"

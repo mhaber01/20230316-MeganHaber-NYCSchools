@@ -17,6 +17,8 @@ import com.example.myapplication.databinding.ActivityMainBinding
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var spinner: Spinner
+
     private val viewModel: HighSchoolViewModel by viewModels()
     private val schoolNameArrayList = ArrayList<String>()
     private val schoolIdArrayList = ArrayList<String>()
@@ -26,26 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initializeUi()
-        val dataAdapter = ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, schoolNameArrayList)
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = dataAdapter
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
-                Toast.makeText(applicationContext, pos.toString(), Toast.LENGTH_SHORT).show()
-                viewModel.scores.observe(this@MainActivity, Observer { scores ->
-                    for (score in scores) {
-                        if (score.id == schoolIdArrayList[pos]) {
-                            binding.mathSatScore.text = score.math
-                            binding.readingSatScore.text = score.reading
-                            binding.writingSatScore.text = score.writing
-                        }
-                    }
-                })
-            }
+        spinner = binding.spinner
 
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-        }
+        initializeUi()
     }
 
     private fun initializeUi() {
@@ -55,16 +40,20 @@ class MainActivity : AppCompatActivity() {
                 schoolIdArrayList.add(school.id)
             }
         })
+        setSpinnerAdapter()
+        listenForSpinnerItemSelection()
     }
 
-    private fun setSpinner(spinner: Spinner) {
+    private fun setSpinnerAdapter() {
         val dataAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, schoolNameArrayList)
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = dataAdapter
+    }
+
+    private fun listenForSpinnerItemSelection() {
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 Toast.makeText(applicationContext, pos.toString(), Toast.LENGTH_SHORT).show()
-                Log.d("SELECTED", "SELECTED")
                 viewModel.scores.observe(this@MainActivity, Observer { scores ->
                     for (score in scores) {
                         if (score.id == schoolIdArrayList[pos]) {

@@ -7,5 +7,4 @@ import org.junit.runner.RunWith
 import org.junit.Assert.*
 
 @RunWith(AndroidJUnit4::class)
-class HighSchoolInstrumentedTest {
-}
+class HighSchoolInstrumentedTest {}

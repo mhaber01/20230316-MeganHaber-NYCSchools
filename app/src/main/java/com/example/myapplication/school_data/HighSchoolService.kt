@@ -28,7 +28,7 @@ object HighSchoolApi {
     }
 }
 
-/** Interface to get the High Schools and SAT Scores */
+/** Interface to get the High Schools and SAT Scores. */
 interface HighSchoolService {
     @GET("s3k6-pzi2.json")
     suspend fun getHighSchools(): List<HighSchool>
