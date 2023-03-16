@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NYC Schools</string>
+
+    <string name="title_home">Learn about NYC Schools</string>
+    <string name="subtitle_home">Your children have the power to change the world!\nLearn about our NYC schools in the dropdown menu below to find which school will empower them to be their best.</string>
+    <string name="title_dropdown">Find a School</string>
+
+    <string name="prompt_select_a_school">Choose a school to see its average SAT scores.</string>
+    <string name="loading">Loading</string>
+    <string name="loading_schools">Loading schools</string>
+    <string name="schools">Schools</string>
+    <string name="average_scores">Average SAT Scores</string>
+    <string name="sat_reading">Reading</string>
+    <string name="sat_writing">Writing</string>
+    <string name="sat_math">Math</string>
+
+    <string-array name="schools_array">
+
+    </string-array>
+</resources>
