@@ -1,7 +1,6 @@
 package com.example.myapplication.school_data
 
 import com.google.gson.annotations.SerializedName
-import com.squareup.moshi.Json
 
 /**
  * This data class defines a High School, which includes a school id and school name.
