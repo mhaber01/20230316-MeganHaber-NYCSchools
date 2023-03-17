@@ -1,16 +1,15 @@
 package com.example.myapplication.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AdapterView
+import android.widget.AdapterView.OnItemSelectedListener
 import android.widget.ArrayAdapter
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.school_data.HighSchoolViewModel
 
@@ -42,18 +41,18 @@ class MainActivity : AppCompatActivity() {
             }
         })
         setSpinnerAdapter()
-        listenForSpinnerItemSelection()
     }
 
     private fun setSpinnerAdapter() {
-        val dataAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, schoolNameArrayList)
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        dataAdapter.notifyDataSetChanged();
-        spinner.adapter = dataAdapter
+        val adapter = ArrayAdapter(applicationContext, android.R.layout.simple_spinner_item, schoolNameArrayList)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adapter
+        spinner.setSelection(0)
+        listenForSpinnerItemSelection()
     }
 
     private fun listenForSpinnerItemSelection() {
-        spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        spinner.onItemSelectedListener = object : OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 Toast.makeText(applicationContext, pos.toString(), Toast.LENGTH_SHORT).show()
                 viewModel.scores.observe(this@MainActivity, Observer { scores ->

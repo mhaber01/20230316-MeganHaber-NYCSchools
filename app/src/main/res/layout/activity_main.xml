@@ -48,6 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/text_margin_top"
         android:spinnerMode="dropdown"
+        android:prompt="@string/prompt_select_a_school"
         app:layout_constraintTop_toBottomOf="@id/prompt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
