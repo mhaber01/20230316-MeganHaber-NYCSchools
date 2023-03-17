@@ -28,7 +28,7 @@ class HighSchoolViewModel() : ViewModel() {
         viewModelScope.launch {
             try {
                 val schoolListResult: List<HighSchool> = HighSchoolApi.retrofitService.getHighSchools()
-                Log.d(tag, "Success: ${schoolListResult.size} SAT scores retrieved")
+                Log.d(tag, "Success: ${schoolListResult.size} schools retrieved")
                 _schools.value = schoolListResult
             } catch (e: java.lang.Exception) {
                 Log.d(tag, "Failure: ${e.message}")

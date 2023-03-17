@@ -1,6 +1,7 @@
 package com.example.myapplication.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -9,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityMainBinding
 import com.example.myapplication.school_data.HighSchoolViewModel
 
@@ -57,9 +59,10 @@ class MainActivity : AppCompatActivity() {
                 viewModel.scores.observe(this@MainActivity, Observer { scores ->
                     for (score in scores) {
                         if (score.id == schoolIdArrayList[pos]) {
-                            binding.mathSatScore.text = score.math
+                            binding.mathSatScore.text = score.reading
                             binding.readingSatScore.text = score.reading
                             binding.writingSatScore.text = score.writing
+                            break
                         }
                     }
                 })

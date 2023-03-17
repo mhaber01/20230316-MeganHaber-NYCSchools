@@ -16,12 +16,12 @@ data class HighSchool(
  * This data class defines Average SAT Scores, which includes a school id and the math, reading, and writing average scores.
  */
 data class AverageSatScores(
-    @Json(name = "dbn")
+    @SerializedName("dbn")
     val id: String,
-    @Json(name = "sat_math_avg_score")
+    @SerializedName("sat_math_avg_score")
     val math: String,
-    @Json(name = "sat_critical_reading_avg_score")
+    @SerializedName("sat_critical_reading_avg_score")
     val reading: String,
-    @Json(name = "sat_writing_avg_score")
+    @SerializedName("sat_writing_avg_score")
     val writing: String,
 )
