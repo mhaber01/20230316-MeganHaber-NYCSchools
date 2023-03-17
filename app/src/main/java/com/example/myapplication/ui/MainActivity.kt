@@ -41,6 +41,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
         setSpinnerAdapter()
+        listenForSpinnerItemSelection()
     }
 
     private fun setSpinnerAdapter() {
@@ -48,7 +49,6 @@ class MainActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
         spinner.setSelection(0)
-        listenForSpinnerItemSelection()
     }
 
     private fun listenForSpinnerItemSelection() {
