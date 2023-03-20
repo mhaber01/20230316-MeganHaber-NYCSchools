@@ -76,9 +76,24 @@ class HighSchoolScoresActivity : AppCompatActivity() {
                 binding.schoolNoScores.text = getString(R.string.no_average_sat_scores)
             } else {
                 binding.schoolNoScores.visibility = GONE
-                binding.schoolSatMathScore.text = currentHighSchoolScores?.math
-                binding.schoolSatReadingScore.text = currentHighSchoolScores?.reading
-                binding.schoolSatWritingScore.text = currentHighSchoolScores?.writing
+                val mathScore = currentHighSchoolScores?.math
+                val readingScore = currentHighSchoolScores?.reading
+                val writingScore = currentHighSchoolScores?.writing
+                binding.schoolSatMathScore.text = buildString {
+                    append(getString(R.string.sat_math))
+                    append(" ")
+                    append(mathScore)
+                }
+                binding.schoolSatReadingScore.text = buildString {
+                    append(getString(R.string.sat_reading))
+                    append(" ")
+                    append(readingScore)
+                }
+                binding.schoolSatWritingScore.text = buildString {
+                    append(getString(R.string.sat_writing))
+                    append(" ")
+                    append(writingScore)
+                }
             }
         })
     }
