@@ -13,7 +13,7 @@ import com.example.myapplication.school_data.HighSchoolViewModel
 
 const val SCHOOL_ID = "school_id"
 
-/** Activity to display each high school in the NYC area's average SAT scores. */
+/** Activity to display each high school in the NYC area in a [RecyclerView] format. */
 class HighSchoolListActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySchoolListBinding
