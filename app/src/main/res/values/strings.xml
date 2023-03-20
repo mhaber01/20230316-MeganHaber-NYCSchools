@@ -6,7 +6,9 @@
     <string name="prompt_select_a_school">Choose a school to see its average SAT scores.</string>
     <string name="schools">Schools</string>
     <string name="average_scores">Average SAT Scores</string>
+    <string name="no_average_sat_scores">There are no average SAT scores on record.</string>
     <string name="sat_reading">Reading</string>
     <string name="sat_writing">Writing</string>
     <string name="sat_math">Math</string>
+    <string name="back_button">Back</string>
 </resources>
